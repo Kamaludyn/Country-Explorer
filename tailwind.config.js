@@ -24,7 +24,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        Nunito: ["Nunito", "sans-serif"],
+        Rubik: ["Rubik", "sans-serif"],
       },
     },
   },

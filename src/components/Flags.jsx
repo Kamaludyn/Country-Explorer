@@ -11,9 +11,8 @@ const Flags = ({ loading, filteredCountries, handleCountryClick }) => {
         <section className="bg-lightBg dark:bg-darkBg px-12  md:px-24 mt-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {filteredCountries.map((country, index) => (
-              <Link to="/detail">
+              <Link key={index} to="/detail">
                 <Flag
-                  key={index}
                   country={country}
                   handleCountryClick={() => handleCountryClick(country)}
                 />

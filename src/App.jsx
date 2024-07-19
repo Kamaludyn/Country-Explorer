@@ -129,41 +129,39 @@ function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <>
+      <Route
+        path="/"
+        element={
+          <MainLayout theme={theme} handleThemeSwitch={handleThemeSwitch} />
+        }
+      >
         <Route
-          path="/"
+          index
           element={
-            <MainLayout theme={theme} handleThemeSwitch={handleThemeSwitch} />
+            <Home
+              handleRegionChange={handleRegionChange}
+              region={region}
+              searchTerm={searchTerm}
+              handleSearchChange={handleSearchChange}
+              selectedRegion={region}
+              loading={loading}
+              filteredCountries={filteredCountries}
+              handleCountryClick={handleCountryClick}
+            />
           }
-        >
-          <Route
-            index
-            element={
-              <Home
-                handleRegionChange={handleRegionChange}
-                region={region}
-                searchTerm={searchTerm}
-                handleSearchChange={handleSearchChange}
-                selectedRegion={region}
-                loading={loading}
-                filteredCountries={filteredCountries}
-                handleCountryClick={handleCountryClick}
-              />
-            }
-          />
-          <Route
-            path="/detail"
-            element={
-              <Detail
-                setSelectedCountry={setSelectedCountry}
-                selectedCountry={selectedCountry}
-                countryCodeMapping={countryCodeMapping}
-              />
-            }
-          />
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </>
+        />
+        <Route
+          path="/detail"
+          element={
+            <Detail
+              setSelectedCountry={setSelectedCountry}
+              selectedCountry={selectedCountry}
+              countryCodeMapping={countryCodeMapping}
+            />
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
     )
   );
   return <RouterProvider router={router} />;
