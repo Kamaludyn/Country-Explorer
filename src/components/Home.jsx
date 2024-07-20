@@ -1,6 +1,6 @@
 import React from "react";
 import SearchAndFilter from "./SearchAndFilter";
-import Flags from "./Flags";
+import MemoizedFlagComponent from "./Flags";
 
 const Home = ({
   handleRegionChange,
@@ -19,7 +19,7 @@ const Home = ({
         searchTerm={searchTerm}
         onSearchChange={handleSearchChange}
       />
-      <Flags
+      <MemoizedFlagComponent
         selectedRegion={region}
         searchTerm={searchTerm}
         loading={loading}

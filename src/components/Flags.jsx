@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Flag from "./Flag";
 import Spinner from "./Spinner";
 import { Link } from "react-router-dom";
@@ -25,4 +26,5 @@ const Flags = ({ loading, filteredCountries, handleCountryClick }) => {
   );
 };
 
-export default Flags;
+const MemoizedFlagComponent = memo(Flags);
+export default MemoizedFlagComponent;

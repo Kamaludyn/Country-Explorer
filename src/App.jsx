@@ -1,3 +1,4 @@
+import { StrictMode, useMemo } from "react";
 import { useEffect, useState } from "react";
 import {
   Route,
@@ -83,23 +84,24 @@ function App() {
     };
 
     fetchData(); // Call the function to fetch data
-  }, []); // Empty dependency array ensures this runs once on mount
+  }, []);
 
   // Filter country based on selected region and search term, then shuffle and limit to 20 results
-  const filteredCountries = shuffleArray(
-    countries
-      .filter((country) => !region || country.region === region)
-      .filter(
-        (country) =>
-          !searchTerm ||
-          country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-  );
+  const filteredCountries = useMemo(() => {
+    return shuffleArray(
+      countries
+        .filter((country) => !region || country.region === region)
+        .filter(
+          (country) =>
+            !searchTerm ||
+            country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+    );
+  }, [countries, region, searchTerm]);
 
   // Handle clicking on a country to show its details
   const handleCountryClick = (country) => {
     setSelectedCountry(country);
-    // navigate("/login-sign-up")
   };
 
   // Function to switch the theme between light and dark
@@ -164,7 +166,11 @@ function App() {
       </Route>
     )
   );
-  return <RouterProvider router={router} />;
+  return (
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>
+  );
 }
 
 export default App;
